@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22.x' # Use LTS version
+          node-version: '20.x' # Use LTS version
           cache: 'npm' # Caches dependencies for faster installs
 
       - name: Install dependencies
