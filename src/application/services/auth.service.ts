@@ -5,6 +5,6 @@ export class AuthService {
   constructor() {}
 
   test() {
-    return 'Hello world!';
+    return 'Hello world';
   }
 }
