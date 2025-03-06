@@ -1,4 +1,4 @@
-name: Build and deploy Node.js app to Azure Web App - hushlearn
+name: Build and deploy NestJS app to Azure Web App - hushlearn
 
 on:
   push:
@@ -10,27 +10,32 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read # This is required for actions/checkout
+      contents: read # Required for actions/checkout
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js version
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22.x'
+          node-version: '22.x' # Use LTS version
+          cache: 'npm' # Caches dependencies for faster installs
 
-      - name: Clean install dependencies
-        run: |
-          rm -rf node_modules
-          npm install
+      - name: Install dependencies
+        run: npm ci # Ensures clean and consistent dependencies
 
-      - name: npm build and test
-        run: |
-          npm run build --if-present
+      - name: Install Nest CLI (if needed)
+        run: npm install -g @nestjs/cli # Optional if not already installed in devDependencies
+
+      - name: Build the application
+        run: npm run build
+
+      - name: Verify build output
+        run: ls -la dist # Ensure the 'dist' folder is created
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip ./*
+        run: zip -r release.zip . -x "node_modules/*" # Exclude node_modules
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -54,7 +59,7 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-      - name: 'Deploy to Azure Web App'
+      - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
@@ -62,3 +67,7 @@ jobs:
           slot-name: 'Production'
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5B241C67B60D4E1F89B568913CDF7254 }}
+
+      - name: Restart Azure Web App (Optional)
+        run: |
+          az webapp restart --name hushlearn --resource-group hushlearn
