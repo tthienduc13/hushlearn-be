@@ -67,7 +67,3 @@ jobs:
           slot-name: 'Production'
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5B241C67B60D4E1F89B568913CDF7254 }}
-
-      - name: Restart Azure Web App (Optional)
-        run: |
-          az webapp restart --name hushlearn --resource-group hushlearn
