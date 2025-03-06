@@ -22,8 +22,8 @@ jobs:
       - name: Install dependencies (without Husky)
         run: HUSKY=0 npm install --include=dev
 
-      - name: Verify Nest.js CLI is installed
-        run: npx nest --version
+      - name: Ensure Nest.js CLI is installed
+        run: npm install --save-dev @nestjs/cli
 
       - name: Run build
         run: npm run build
