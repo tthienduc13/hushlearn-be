@@ -14,7 +14,7 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "prepare": "npx husky install",
+    "prepare": "husky",
     "pre-commit": "lint-staged",
     "test": "jest",
     "test:watch": "jest --watch",
