@@ -1,5 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-# Run commitlint to enforce message format
-npx commitlint --edit "$1"
