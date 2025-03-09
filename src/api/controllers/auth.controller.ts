@@ -11,4 +11,10 @@ export class AuthController {
   test() {
     return this.authService.test();
   }
+
+  @Post('test2')
+  @Public()
+  test2() {
+    return this.authService.test();
+  }
 }
