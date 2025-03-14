@@ -46,6 +46,12 @@
       "@infra/*": [
         "src/infra/*"
       ],
+      "@utils": [
+        "src/utils"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
       "@shared": [
         "src/shared"
       ],

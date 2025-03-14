@@ -1,8 +1,13 @@
 import { Public } from '@shared/decorators/public.decorator';
 import { Controller, Post } from '@nestjs/common';
-import { AuthService } from '@application/services/auth.service';
+import { AuthService } from './auth.service';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('authentication')
+@ApiTags('authentication')
+@Controller({
+  path: 'auth',
+  version: '1',
+})
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
