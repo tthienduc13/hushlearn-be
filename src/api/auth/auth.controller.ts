@@ -3,7 +3,7 @@ import { Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('authentication')
+@ApiTags('auth')
 @Controller({
   path: 'auth',
   version: '1',
@@ -20,6 +20,12 @@ export class AuthController {
   @Post('test2')
   @Public()
   test2() {
+    return this.authService.test();
+  }
+
+  @Post('test3')
+  @Public()
+  test3() {
     return this.authService.test();
   }
 }
