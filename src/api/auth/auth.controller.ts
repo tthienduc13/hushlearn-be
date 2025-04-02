@@ -11,7 +11,7 @@ import { ApiTags } from '@nestjs/swagger';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('test')
+  @Post('test123')
   @Public()
   test() {
     return this.authService.test();
