@@ -1,4 +1,4 @@
-import { Environment, LogService } from '../constants/app.constant';
+import { Environment, LogService } from '@/constants/app.constant';
 import { registerAs } from '@nestjs/config';
 import {
   IsBoolean,

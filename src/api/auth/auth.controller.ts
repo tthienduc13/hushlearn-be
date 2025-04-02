@@ -3,7 +3,7 @@ import { Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('auth')
+@ApiTags('authentication')
 @Controller({
   path: 'auth',
   version: '1',
